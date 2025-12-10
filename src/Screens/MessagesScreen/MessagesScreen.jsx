@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar'
 import { getContactById } from '../../services/contactService'
 import { ContactDetailContext } from '../../Context/ContactDetailContext'
+import MessagesList from '../../Components/MessagesList/MessagesList'
 
 
 export default function MessagesScreen() {
@@ -19,7 +20,10 @@ export default function MessagesScreen() {
             {
                 loadingContact 
                 ? <div>Cargando..</div>
-                : <h2>Contacto seleccionado: {contactSelected.contact_name}</h2>
+                : <div>
+                    <h2>{contactSelected.contact_name}</h2>
+                    <MessagesList/>
+                </div>
             }
             
         </div>
