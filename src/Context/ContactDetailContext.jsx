@@ -21,6 +21,30 @@ const ContactDetailContextProvider = () => {
         )
     }
 
+    function addNewMessage (content){
+        const new_message = {
+            message_id: contactSelected.messages.length + 1,
+            message_content: content,
+            message_state: 'NOT_SEND',
+            message_created_at: new Date(),
+            send_by_me: true
+        }
+        /* Clonamos el contacto seleccionado */
+        const contactSelectedCloned = { ...contactSelected }
+
+        /* Clonamos los mensajes del contacto seleccionado */
+        const messagesCloned = [...contactSelectedCloned.messages]
+
+        /* Agregamos al clone de mensajes el nuevo mensaje */
+        messagesCloned.push(new_message)
+
+        /* Guardamos la nueva lista clonada modificada */
+        contactSelectedCloned.messages = messagesCloned
+
+        /* Seteamos el contacto seleccionado con la lista de mensajes actualizada */
+        setContactSelected(contactSelectedCloned)
+    }
+
     useEffect(
         loadContactById,
         [parametros_url.contact_id]
@@ -29,7 +53,8 @@ const ContactDetailContextProvider = () => {
     const providerValues = {
         contactSelected,
         loadingContact,
-        loadContactById
+        loadContactById,
+        addNewMessage
     }
 
     

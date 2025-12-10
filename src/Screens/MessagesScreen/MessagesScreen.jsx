@@ -4,6 +4,7 @@ import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar'
 import { getContactById } from '../../services/contactService'
 import { ContactDetailContext } from '../../Context/ContactDetailContext'
 import MessagesList from '../../Components/MessagesList/MessagesList'
+import AddNewMessage from '../../Components/AddNewMessage/AddNewMessage'
 
 
 export default function MessagesScreen() {
@@ -23,6 +24,7 @@ export default function MessagesScreen() {
                 : <div>
                     <h2>{contactSelected.contact_name}</h2>
                     <MessagesList/>
+                    <AddNewMessage/>
                 </div>
             }
             
