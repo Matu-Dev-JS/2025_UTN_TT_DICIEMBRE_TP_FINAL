@@ -34,6 +34,8 @@ const ContactListContextProvider = () => {
         loadContactList,
     }
 
+    /* Crear una funcion llamada addNewContact que reciba el nombre del nuevo contacto y lo agregue al estado de contactos */
+
     return (
         <ContactListContext.Provider value={providerValues}>
             <Outlet />

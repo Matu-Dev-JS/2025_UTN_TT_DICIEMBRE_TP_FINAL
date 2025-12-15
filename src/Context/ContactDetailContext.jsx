@@ -32,14 +32,8 @@ const ContactDetailContextProvider = () => {
         /* Clonamos el contacto seleccionado */
         const contactSelectedCloned = { ...contactSelected }
 
-        /* Clonamos los mensajes del contacto seleccionado */
-        const messagesCloned = [...contactSelectedCloned.messages]
-
-        /* Agregamos al clone de mensajes el nuevo mensaje */
-        messagesCloned.push(new_message)
-
-        /* Guardamos la nueva lista clonada modificada */
-        contactSelectedCloned.messages = messagesCloned
+        /* Agregamos al clone de contacto el nuevo mensaje */
+        contactSelectedCloned.messages.push(new_message)
 
         /* Seteamos el contacto seleccionado con la lista de mensajes actualizada */
         setContactSelected(contactSelectedCloned)
