@@ -9,6 +9,7 @@ const ContactListContextProvider = () => {
     const [loadingContactsState, setLoadingContactState] = useState(true)
 
 
+
     function loadContactList (){
         setLoadingContactState(true)
         setTimeout(
@@ -23,6 +24,29 @@ const ContactListContextProvider = () => {
         
     }
 
+    function getContactById (contact_id) {
+        for(const contact of contactState){
+            
+            if(Number(contact.contact_id) === Number(contact_id)){
+                return contact
+            }
+        }
+    }
+
+    function updateContactById (contact_to_update, contact_id){
+        //Creamos una nueva lista donde el contacto a actualizar se reemplazara por el contacto actualizado
+        const new_contact_list = contactState.map(
+            (contact) => {
+                if(Number(contact.contact_id) === Number(contact_id)){
+                    return contact_to_update
+                }
+                return contact
+            }
+        )
+
+        setContactState(new_contact_list)
+    }
+
     useEffect (
         loadContactList,
         []
@@ -32,6 +56,8 @@ const ContactListContextProvider = () => {
         contactState,
         loadingContactsState,
         loadContactList,
+        getContactById,
+        updateContactById
     }
 
     /* Crear una funcion llamada addNewContact que reciba el nombre del nuevo contacto y lo agregue al estado de contactos */

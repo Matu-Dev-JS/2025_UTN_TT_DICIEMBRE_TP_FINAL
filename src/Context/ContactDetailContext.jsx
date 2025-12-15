@@ -1,25 +1,15 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router";
-import { getContactById } from "../services/contactService";
-
+import { ContactListContext } from "./ContactListContext";
 export const ContactDetailContext = createContext()
 
 const ContactDetailContextProvider = () => {
     const parametros_url = useParams()
     const contact_id = parametros_url.contact_id
-    const [contactSelected, setContactSelected] = useState(null)
-    const [loadingContact, setLoadingContact] = useState(true)
-    function loadContactById (){
-        setLoadingContact(true)
-        setTimeout(
-            function () {
-                const contact = getContactById(contact_id)
-                setContactSelected(contact)
-                setLoadingContact(false)
-            },
-            2000
-        )
-    }
+    const { contactState, getContactById, updateContactById } = useContext(ContactListContext)
+
+    const contactSelected = getContactById(contact_id)
+    console.log(contactSelected)
 
     function addNewMessage (content){
         const new_message = {
@@ -35,19 +25,14 @@ const ContactDetailContextProvider = () => {
         /* Agregamos al clone de contacto el nuevo mensaje */
         contactSelectedCloned.messages.push(new_message)
 
-        /* Seteamos el contacto seleccionado con la lista de mensajes actualizada */
-        setContactSelected(contactSelectedCloned)
+        /* Actualizamos el contacto con el nuevo mensaje */
+        updateContactById(contactSelectedCloned, contact_id)
     }
 
-    useEffect(
-        loadContactById,
-        [parametros_url.contact_id]
-    )
+
 
     const providerValues = {
         contactSelected,
-        loadingContact,
-        loadContactById,
         addNewMessage
     }
 
