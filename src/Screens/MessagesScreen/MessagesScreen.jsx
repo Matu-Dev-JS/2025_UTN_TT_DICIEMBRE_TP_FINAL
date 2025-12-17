@@ -6,7 +6,8 @@ import { ContactDetailContext } from '../../Context/ContactDetailContext'
 import MessagesList from '../../Components/MessagesList/MessagesList'
 import AddNewMessage from '../../Components/AddNewMessage/AddNewMessage'
 import { ContactListContext } from '../../Context/ContactListContext'
-
+import { Gi3dStairs, GiAbstract069 } from "react-icons/gi";
+import { CgArrowLongRightL } from "react-icons/cg";
 
 export default function MessagesScreen() {
    
@@ -17,6 +18,10 @@ export default function MessagesScreen() {
     const {loadingContactsState} = useContext(ContactListContext)
     return (
         <div>
+            <img src='/auto-rojo.webp' width={'100px'} />
+            <Gi3dStairs/>
+            <GiAbstract069/>
+            <CgArrowLongRightL className='flecha'/>
             <h1>Pantalla de mensajes</h1>
             <ContactSidebar/>
             {

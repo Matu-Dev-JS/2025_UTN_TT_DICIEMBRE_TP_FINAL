@@ -11,6 +11,12 @@ const ContactDetailContextProvider = () => {
     const contactSelected = getContactById(contact_id)
     console.log(contactSelected)
 
+/* 
+    ELIMINAR ESTADO DE DETALLE DE CONTACTO y Cargando de detalle de contacto
+    Utilizar el estado de la lista de contactos del contexto ContactListContext
+*/
+
+
     function addNewMessage (content){
         const new_message = {
             message_id: contactSelected.messages.length + 1,
